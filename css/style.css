@@ -1,4 +1,8 @@
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
     color: #2a2a2a;
@@ -6,6 +10,7 @@ body {
     flex-direction: column;
     margin: 0;
     min-height: 100vh;
+    background-color: #f4efe9;
 }
 
 main h2 {
@@ -35,6 +40,10 @@ main h2 {
     text-decoration: underline;
 }
 
+#welcome, #projects, #contact-info, #skills {
+    scroll-margin-top: 100px;
+}
+
 .about-me h2 {
     margin-bottom: 0.5rem;
 }
@@ -48,10 +57,10 @@ main h2 {
 
 .about-me-text {
     flex: 1;
-    min-width: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 
 .profile-image {
@@ -72,6 +81,7 @@ main h2 {
     flex-direction: row;
     gap: 2rem;
     justify-content: center;
+    padding: 0;
 }
 
 .projects ul li {
@@ -79,6 +89,7 @@ main h2 {
     border-width: 3px;
     padding: 1rem;
     width: 200px;
+    height: 200px;
 }
 
 .skills ul {
@@ -113,6 +124,11 @@ main h2 {
     text-decoration: underline;
 }
 
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
 
 header,
 footer {
@@ -123,11 +139,47 @@ footer {
 main {
     flex: 1;
     background-color: #f4efe9;
-    padding: 2rem 5rem;
+    padding: 1rem 0;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: min(25px, 10vw);
 }
 
 footer {
     font-size: 0.875rem;
 }
 
+@media only screen and (max-width: 1100px) {
+
+    .header-inner {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .container-about-me {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .about-me-text {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .projects ul {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .skills ul {
+        align-items: center;
+    }
+
+    #welcome, #projects, #contact-info, #skills {
+    scroll-margin-top: 140px;
+}
+}
 
