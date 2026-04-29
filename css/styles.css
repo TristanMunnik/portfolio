@@ -90,14 +90,11 @@ main h2 {
     padding: 1rem;
     width: 200px;
     height: 200px;
-
 }
+
 .projects ul li:hover {
     transition: transform 0.2s;
     transform: scale(1.05);
-}
-
-.message-generator {
     cursor: pointer;
 }
 
@@ -109,15 +106,40 @@ main h2 {
     padding-left: 1rem;
 }
 
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 200px;
+    text-align: left;
+}
+
+.skill-category h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #2a2a2a;
+}
+
+.skill-category ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;
     align-items: left;
     padding-left: 2rem;
+    
 }
  
 .contact-details p {
     margin: 1rem 0;
+    color: #d1d1d1;
 }
 
 .contact-info h2 {
@@ -125,8 +147,8 @@ main h2 {
 }
 
 .contact-info a {
-    color: #d1d1d1;
     text-decoration: none;
+    color: #d1d1d1;
 }
 
 .contact-info a:hover {
@@ -173,6 +195,8 @@ footer {
 
 @media only screen and (max-width: 1100px) {
 
+    
+
     .header-inner {
         flex-direction: column;
         align-items: center;
@@ -196,12 +220,21 @@ footer {
         align-items: center;
     }
 
-    .skills ul {
-        align-items: center;
-    }
-
     #welcome, #projects, #contact-info, #skills {
     scroll-margin-top: 140px;
-}
+    }
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .skill-category {
+        text-align: left;
+    }
+    
+    .skill-category ul {
+        text-align: left;
+        display: inline-block;
+    }
 }
 
