@@ -28,9 +28,10 @@ backToTopButton.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-const messageGenerator = document.querySelector('.message-generator');
-if (messageGenerator) {
-    messageGenerator.addEventListener('click', () => {
-        window.open('https://github.com/TristanMunnik/MessageGenerator', '_blank');
+const projectsClicked = document.querySelectorAll('.clickable-project');
+projectsClicked.forEach(project => {
+    project.addEventListener('click' , () => {
+        const url = project.getAttribute('data-url');
+        window.open(url, '_blank');
     });
-}
+});
