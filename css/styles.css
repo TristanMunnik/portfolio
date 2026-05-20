@@ -1,240 +1,479 @@
 
+
+/* =========================================================
+   1. CSS VARIABLES
+   Central place to change colours/spacing across the site.
+   ========================================================= */
+:root {
+    /* Colour palette */
+    --color-bg: #f6f2ec;            /* Page background (warm off-white) */
+    --color-surface: #ffffff;       /* Card / panel background */
+    --color-dark: #1e1e1e;          /* Header & footer background */
+    --color-text: #2a2a2a;          /* Primary body text */
+    --color-text-muted: #6b6b6b;    /* Secondary text */
+    --color-text-light: #f5f5f5;    /* Text on dark backgrounds */
+    --color-accent: #c9784a;        /* Warm accent for links / highlights */
+    --color-accent-hover: #a85e34;  /* Darker accent for hover */
+    --color-border: #e5dfd6;        /* Subtle borders */
+
+    /* Spacing scale (keeps everything consistent) */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
+    /* Other tokens */
+    --radius: 10px;                                       /* Rounded corner size */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);           /* Soft card shadow */
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.10);          /* Hover/lifted shadow */
+    --transition: 0.25s ease;                             /* Standard motion timing */
+    --max-width: 1200px;                                  /* Main content width cap */
+}
+
+
+/* =========================================================
+   2. BASE / RESET
+   ========================================================= */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;            /* Smooth anchor scrolling */
+    -webkit-text-size-adjust: 100%;     /* Prevent iOS text bumping */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;             /* Easier sizing — padding stays inside width */
 }
 
 body {
-    font-family: Arial, sans-serif;
-    color: #2a2a2a;
-    display: flex;
-    flex-direction: column;
+    /* System font stack: looks native and professional everywhere */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 "Helvetica Neue", Arial, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
     margin: 0;
     min-height: 100vh;
-    background-color: #f4efe9;
+    display: flex;
+    flex-direction: column;             /* Footer sticks to bottom on short pages */
+    line-height: 1.6;                   /* Comfortable reading */
 }
 
+
+/* =========================================================
+   3. TYPOGRAPHY
+   ========================================================= */
+h1, h2, h3 {
+    color: var(--color-text);
+    line-height: 1.25;
+    margin: 0 0 var(--space-md) 0;
+}
+
+h1 { font-size: 2rem;   font-weight: 700; }
+h2 { font-size: 1.5rem; font-weight: 600; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+
+p { margin: 0 0 var(--space-md) 0; }
+
+/* Section headings inside main get a subtle accent underline
+   (replaces the previous text-decoration: underline which looked basic) */
 main h2 {
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+main h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+    margin-top: var(--space-sm);
 }
 
 
+/* =========================================================
+   4. LAYOUT — Header / Main / Footer
+   ========================================================= */
+
+/* Sticky header sits at the top while scrolling */
+header.site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-sm);
+    z-index: 100;
+}
+
+/* Inner wrapper centres header content and adds breathing room */
 .header-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 2rem;
+    padding: var(--space-md) var(--space-lg);
+    max-width: var(--max-width);
+    margin: 0 auto;
 }
 
+/* Site title in the header */
+.header-inner h1 {
+    color: var(--color-text-light);
+    font-size: 1.25rem;
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+/* Main content area */
+main {
+    flex: 1;                                  /* Pushes footer down */
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-lg); /* Vertical breathing room */
+}
+
+/* Welcome heading + intro paragraph */
+#welcome {
+    margin-top: 0;
+    font-size: 2.25rem;
+}
+#welcome + p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+}
+
+/* Section anchors leave room for sticky header when scrolled to */
+#welcome,
+#projects,
+#contact-info,
+#skills {
+    scroll-margin-top: 100px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    padding: var(--space-lg) 0;
+    margin-top: var(--space-xl);
+}
+
+
+/* =========================================================
+   5. NAVIGATION
+   ========================================================= */
 .nav-section ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 1rem;
+    gap: var(--space-lg);
 }
+
 .nav-section a {
-    color: #f5f5f5;
+    color: var(--color-text-light);
     text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    position: relative;
+    transition: color var(--transition);
+}
+
+/* Animated underline on hover — feels more refined than plain underline */
+.nav-section a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width var(--transition);
 }
 .nav-section a:hover {
-    text-decoration: underline;
+    color: var(--color-accent);
+}
+.nav-section a:hover::after {
+    width: 100%;
 }
 
-#welcome, #projects, #contact-info, #skills {
-    scroll-margin-top: 100px;
+
+/* =========================================================
+   6. ABOUT ME SECTION
+   ========================================================= */
+.about-me {
+    margin-bottom: var(--space-xl);
 }
 
-.about-me h2 {
-    margin-bottom: 0.5rem;
-}
-
+/* Layout: text on the left, image on the right */
 .container-about-me {
     display: flex;
-    gap: 4rem;
+    gap: var(--space-xl);
+    align-items: center;
     width: 100%;
-    justify-content: space-between;
 }
 
+/* Text column grows to fill the remaining space */
 .about-me-text {
     flex: 1;
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+/* Profile image placeholder — gets a soft border + circle look */
+.profile-image {
+    width: 240px;
+    height: 240px;
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    border-radius: 50%;                /* Circular placeholder */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;                    /* Never squashes on small screens */
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   7. PROJECTS SECTION
+   ========================================================= */
+.projects ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;                                            /* Grid handles wrapping nicely */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+}
+
+/* Each project = a card */
+.projects ul li {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                border-color var(--transition);
+    min-height: 180px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-start;
 }
 
-.profile-image {
-    width: 250px;
-    height: 250px;
-    background-color: #ccc;
-    align-items: center;
-    font-size: 0.875rem;
-    color: #666;
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
+/* Headings inside project cards */
+.projects ul li h3 {
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
 }
 
-.projects ul{
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    justify-content: center;
-    padding: 0;
+.projects ul li p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin: 0;
 }
 
-.projects ul li {
-    border: 1px solid #2a2a2a;
-    border-width: 3px;
-    padding: 1rem;
-    width: 200px;
-    height: 200px;
-}
-
-.projects ul li:hover {
-    transition: transform 0.2s;
-    transform: scale(1.05);
+/* Clickable project cards lift on hover */
+.projects ul li.clickable-project {
     cursor: pointer;
 }
-
-.skills ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: start;
-    padding-left: 1rem;
+.projects ul li.clickable-project:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
 }
 
+
+/* =========================================================
+   8. SKILLS SECTION
+   ========================================================= */
+
+/* Three-column grid for Frontend / Backend / Tools */
 .skills-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
 }
 
+/* Each skill group sits in its own card */
 .skill-category {
-    flex: 1;
-    min-width: 200px;
-    text-align: left;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.skill-category:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .skill-category h3 {
-    margin-bottom: 0.5rem;
+    margin: 0 0 var(--space-md) 0;
     font-size: 1.1rem;
-    color: #2a2a2a;
+    color: var(--color-accent);            /* Accent colour to differentiate */
 }
 
 .skill-category ul {
-    list-style: disc;
-    padding-left: 1.5rem;
+    list-style: none;                      /* Custom bullet for cleaner look */
+    padding: 0;
+    margin: 0;
 }
 
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    padding-left: 2rem;
-    
+/* Custom bullet point using a dot pseudo-element */
+.skill-category ul li {
+    padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+    position: relative;
+    color: var(--color-text);
 }
- 
-.contact-details p {
-    margin: 1rem 0;
-    color: #d1d1d1;
+.skill-category ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+}
+
+
+/* =========================================================
+   9. CONTACT SECTION
+   ========================================================= */
+.contact-info {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
 }
 
 .contact-info h2 {
-    margin-bottom: 0rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+}
+
+.contact-details p {
+    margin: var(--space-sm) 0;
+    color: var(--color-text-light);
+    font-size: 0.95rem;
 }
 
 .contact-info a {
+    color: var(--color-text-light);
     text-decoration: none;
-    color: #d1d1d1;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition), color var(--transition);
+    padding-bottom: 2px;
 }
 
 .contact-info a:hover {
-    text-decoration: underline;
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
 }
 
-header {
-    position: sticky;
-    top: 0;
-    width: 100%;
-}
 
-header,
-footer {
-    background-color: #1e1e1e;
-    color: #f5f5f5;
-}
-
-main {
-    flex: 1;
-    background-color: #f4efe9;
-    padding: 1rem 0;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: min(25px, 10vw);
-}
-
-footer {
-    font-size: 0.875rem;
-}
-
+/* =========================================================
+   10. RETURN-TO-TOP BUTTON
+   Floating button in the bottom-right corner.
+   ========================================================= */
 #return-to-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #2b2a2a;
-    color: #f5f5f5;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    bottom: 24px;
+    right: 24px;
+    background-color: var(--color-dark);
+    color: var(--color-text-light);
+    padding: 0.65rem 1.1rem;
+    border-radius: 999px;                  /* Pill shape */
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-md);
     z-index: 1000;
+    transition: background-color var(--transition),
+                transform var(--transition);
+    user-select: none;                     /* Stops text-highlight on click */
 }
 
+#return-to-top:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   11. RESPONSIVE — Tablet & Mobile
+   ========================================================= */
+
+/* Medium screens & below (tablets / small laptops) */
 @media only screen and (max-width: 1100px) {
 
-    
-
+    /* Stack header items vertically */
     .header-inner {
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: var(--space-md);
+        padding: var(--space-md);
     }
 
+    /* Stack the about-me text + image */
     .container-about-me {
         flex-direction: column;
-        align-items: center;
         text-align: center;
-    }
-    
-    .about-me-text {
-        max-width: 100%;
-        width: 100%;
-    }
-    
-    .projects ul {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        gap: var(--space-lg);
     }
 
-    #welcome, #projects, #contact-info, #skills {
-    scroll-margin-top: 140px;
+    .about-me-text {
+        width: 100%;
     }
-    .skills-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .skill-category {
-        text-align: left;
-    }
-    
-    .skill-category ul {
-        text-align: left;
-        display: inline-block;
+
+    /* Give anchor targets more room since header is taller now */
+    #welcome,
+    #projects,
+    #contact-info,
+    #skills {
+        scroll-margin-top: 160px;
     }
 }
 
+/* Small screens (phones) */
+@media only screen and (max-width: 600px) {
+
+    main {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    #welcome {
+        font-size: 1.75rem;
+    }
+
+    .nav-section ul {
+        flex-wrap: wrap;                  /* Nav links wrap instead of overflowing */
+        justify-content: center;
+        gap: var(--space-md);
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    #return-to-top {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.5rem 0.9rem;
+    }
+}
