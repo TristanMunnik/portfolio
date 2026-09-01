@@ -20,17 +20,25 @@ function WorkPage() {
                 <div className="page-detail-panel">
                     <div className="project-grid">
                         {projectCards.map((project, index) => (
-                            <article key={project.title} className="project-card">
-                                <span className="card-index">0{index + 1}</span>
-                                {project.link ? (
-                                    <a className="project-link" href={project.link} target="_blank" rel="noreferrer">
-                                        <h3>{project.title}</h3>
-                                    </a>
-                                ) : (
+                            project.link ? (
+                                <a
+                                    key={project.title}
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="project-card project-card-link"
+                                >
+                                    <span className="card-index">0{index + 1}</span>
                                     <h3>{project.title}</h3>
-                                )}
-                                <p>{project.subtitle}</p>
-                            </article>
+                                    <p>{project.subtitle}</p>
+                                </a>
+                            ) : (
+                                <article key={project.title} className="project-card">
+                                    <span className="card-index">0{index + 1}</span>
+                                    <h3>{project.title}</h3>
+                                    <p>{project.subtitle}</p>
+                                </article>
+                            )
                         ))}
                     </div>
                 </div>
