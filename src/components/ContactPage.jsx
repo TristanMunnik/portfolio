@@ -14,6 +14,9 @@ function ContactPage() {
                         <a href="https://github.com/TristanMunnik" target="_blank" rel="noreferrer">
                             GitHub
                         </a>
+                        <a href="https://www.linkedin.com/in/tristanmunnik/" target="_blank" rel="noreferrer">
+                            LinkedIn
+                        </a>
                     </div>
                 </div>
             </div>
