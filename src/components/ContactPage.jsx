@@ -1,24 +1,37 @@
+import ExternalLink from './ExternalLink.jsx'
+
 function ContactPage() {
     return (
-        <section id="contact" className="site-footer page-section">
-            <div className="two-column-layout">
-                <div className="page-copy-panel">
-                    <p className="eyebrow">Contact.</p>
-                    <h2>Let’s connect</h2>
+        <section id="contact" className="section contact" aria-labelledby="contact-title">
+            <div className="container">
+                <div className="section-heading">
+                    <h2 id="contact-title" className="section-title">
+                        contact
+                    </h2>
+                    <p className="section-sub">
+                        I’m looking for my first junior developer role. Email is the quickest way to reach me.
+                    </p>
                 </div>
 
-                <div className="page-detail-panel">
-                    <div className="footer-links">
-                        <span>Email: tristanmunnik3@gmail.com</span>
-                        <span>Phone: 0763180857</span>
-                        <a href="https://github.com/TristanMunnik" target="_blank" rel="noreferrer">
+                <a className="button button-primary button-large" href="mailto:tristanmunnik3@gmail.com">
+                    tristanmunnik3@gmail.com
+                </a>
+
+                <ul className="social-links">
+                    <li>
+                        <ExternalLink href="https://github.com/TristanMunnik" className="button button-outline button-small">
                             GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/tristanmunnik/" target="_blank" rel="noreferrer">
+                        </ExternalLink>
+                    </li>
+                    <li>
+                        <ExternalLink
+                            href="https://www.linkedin.com/in/tristanmunnik/"
+                            className="button button-outline button-small"
+                        >
                             LinkedIn
-                        </a>
-                    </div>
-                </div>
+                        </ExternalLink>
+                    </li>
+                </ul>
             </div>
         </section>
     )

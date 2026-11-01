@@ -1,48 +1,40 @@
-import milnertonBeach from '../assets/milnerton-beach.jpg'
+import heroPhoto from '../assets/hero-milnerton.webp'
 
 function HomePage() {
     return (
-        <section id="home" className="hero-section page-section home-page">
-            <div className="two-column-layout">
-                <div className="page-copy-panel">
-                    <p className="eyebrow">This is me.</p>
-                    <h1 className="hero-name">Tristan Munnik</h1>
+        <section id="top" className="hero">
+            <div className="container hero-inner">
+                <div className="hero-copy">
+                    <p className="hero-kicker">
+                        hi, I’m <strong>Tristan Munnik</strong>
+                        <span className="hero-divider" aria-hidden="true">
+                            /
+                        </span>
+                        <span className="accent">junior full-stack developer</span>
+                    </p>
+                    <h1>I build web apps from the database to the screen.</h1>
+                    <p className="hero-intro">
+                        I enjoy turning real problems into software that is simple, secure and easy to use.
+                        Based in Cape Town and looking for my first junior role.
+                    </p>
+                    <div className="button-row">
+                        <a className="button button-primary" href="#contact">
+                            contact me
+                        </a>
+                        <a className="button button-outline" href="#work">
+                            view work
+                        </a>
+                    </div>
                 </div>
 
-                <div className="page-detail-panel">
-                    <p className="intro-copy">
-                        Developer
-                        <span className="intro-divider">•</span>
-                        Creator
-                        <span className="intro-divider">•</span>
-                        Enthusiast
-                    </p>
-                    <p>
-                        I build thoughtful digital experiences, learn through real projects, and keep
-                        refining my craft with every new idea I ship.
-                    </p>
-                    <figure className="home-image">
-                        <img
-                            src={milnertonBeach}
-                            alt="Sunrise across Milnerton Beach toward Table Mountain in Cape Town"
-                        />
-                        <figcaption>
-                            Milnerton Beach, Cape Town. Photo by{' '}
-                            <a
-                                href="https://commons.wikimedia.org/wiki/File:10-6-2013_Sunrise_-_Flickr_-_barbourians.jpg"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                Ian Barbour
-                            </a>{' '}
-                            under{' '}
-                            <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noreferrer">
-                                CC BY-SA 2.0
-                            </a>
-                            .
-                        </figcaption>
-                    </figure>
-                </div>
+                <figure className="hero-photo">
+                    <img
+                        src={heroPhoto}
+                        alt="Sunrise over Table Mountain, seen from Milnerton Beach in Cape Town"
+                        width="640"
+                        height="799"
+                    />
+                </figure>
             </div>
         </section>
     )

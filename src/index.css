@@ -1,9 +1,20 @@
 :root {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  line-height: 1.5;
+  --bg: #161617;
+  --surface: #1e1e20;
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #f2f2ef;
+  --muted: rgba(242, 242, 239, 0.7);
+  --faint: rgba(242, 242, 239, 0.55);
+  --accent: #f0a65a;
+  --radius: 1.25rem;
+  --header-height: 3.5rem;
+
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color: #f2f2ef;
-  background: #0b0b0c;
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: dark;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,11 +29,24 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
-  background: #0b0b0c;
+  background: var(--bg);
 }
 
 img {
@@ -30,10 +54,11 @@ img {
   display: block;
 }
 
-#root {
-  min-height: 100vh;
-}
-
 a {
   color: inherit;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
